@@ -162,24 +162,109 @@ You can use **MySQL** or **SQLite**.
 
 ### OPTION B — SQLite (simple, no MySQL needed)
 
-1. Create an empty SQLite file:
+SQLite is the easiest database for small Laravel projects and student assignments.
 
-        touch database/database.sqlite
+---
 
-2. Edit your `.env`:
+#### 1. Create an empty SQLite database file
 
-        DB_CONNECTION=sqlite
-        DB_DATABASE=database/database.sqlite
+    touch database/database.sqlite
 
-3. Clear previous DB config cache:
+---
 
-        php artisan config:clear
+#### 2. Update `.env` for SQLite
 
-SQLite is great for students or quick testing because:
-- No database server  
-- No username/password  
-- Faster setup  
-- Works immediately  
+    DB_CONNECTION=sqlite
+    DB_DATABASE=database/database.sqlite
+
+Then clear cached config:
+
+    php artisan config:clear
+
+---
+
+#### 3. If you see this error:
+
+    could not find driver (Connection: sqlite)
+
+This means your **PHP does NOT have the SQLite driver installed**.
+
+You must install it.
+
+---
+
+### How to fix the SQLite driver error
+
+## A) Linux (Ubuntu / Debian)
+
+Check if SQLite drivers are installed:
+
+    php -m | grep -i sqlite
+
+If empty → install them:
+
+For default PHP version:
+
+    sudo apt-get update
+    sudo apt-get install php-sqlite3
+
+For a specific version (example: PHP 8.3):
+
+    sudo apt-get install php8.3-sqlite3
+
+Then restart PHP:
+
+- If using Laravel's internal server, simply restart:
+
+      php artisan serve
+
+- If using Apache:
+
+      sudo systemctl restart apache2
+
+Test again:
+
+    php -m | grep -i sqlite
+
+You should now see:
+- sqlite3  
+- pdo_sqlite  
+
+---
+
+## B) Windows
+
+1. Open your PHP installation folder (example):
+
+       C:\xampp\php\
+
+2. Open `php.ini` in Notepad.
+
+3. Find and **uncomment** these lines (remove the `;` at the start):
+
+       extension=pdo_sqlite
+       extension=sqlite3
+
+4. Save the file.
+
+5. Restart Apache / restart your server.
+
+6. Test again:
+
+       php -m | findstr sqlite
+
+---
+
+### SQLite is now ready!
+
+Run migrations:
+
+    php artisan migrate
+
+Run seeders (optional):
+
+    php artisan db:seed
+
 
 
 ## 6. Run Migrations & Seeders
