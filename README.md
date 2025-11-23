@@ -305,9 +305,30 @@ It is a practical extension of all concepts in Chapter 8.
 
 ## 9. Suggested Exercises
 
-1. Add an email field to the students table.
-2. Add validation (e.g., grade between 0–100).
-3. Add sorting (order by grade).
-4. Add search (filter students by name).
+1. Add an `email` field to the students table  
+   - Update migration  
+   - Update model `$fillable`  
+   - Update create/edit forms and views  
+
+2. Add validation rules  
+   - Name: required, min length  
+   - Grade: numeric, between 0–100  
+
+3. Add sorting  
+   - Order students by grade (ascending/descending)  
+
+4. Add a search box  
+   - Filter students by name  
+
+5. Apply Bootstrap  
+   - Add Bootstrap CDN  
+   - Style the table, forms, and buttons  
+   - Make a clean, responsive layout  
+
+---
+
+Dr. Abdulkarim Malkadi  
+Good luck 🌟
+
 
 
