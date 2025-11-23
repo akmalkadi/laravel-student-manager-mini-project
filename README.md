@@ -137,22 +137,50 @@ Update DatabaseSeeder:
 
 ## 5. Database Setup
 
-Create a database:
-
-    mysql -u root -p
-    CREATE DATABASE student_manager;
-    EXIT;
-
-Edit your .env file:
-
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=student_manager
-    DB_USERNAME=root
-    DB_PASSWORD=
+You can use **MySQL** or **SQLite**.
 
 ---
+
+### OPTION A — MySQL (recommended)
+
+1. Create the database:
+
+        mysql -u root -p
+        CREATE DATABASE student_manager;
+        EXIT;
+
+2. Edit your `.env` file:
+
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=student_manager
+        DB_USERNAME=root
+        DB_PASSWORD=
+
+---
+
+### OPTION B — SQLite (simple, no MySQL needed)
+
+1. Create an empty SQLite file:
+
+        touch database/database.sqlite
+
+2. Edit your `.env`:
+
+        DB_CONNECTION=sqlite
+        DB_DATABASE=database/database.sqlite
+
+3. Clear previous DB config cache:
+
+        php artisan config:clear
+
+SQLite is great for students or quick testing because:
+- No database server  
+- No username/password  
+- Faster setup  
+- Works immediately  
+
 
 ## 6. Run Migrations & Seeders
 
